@@ -10,7 +10,7 @@ const baseUrl = global.isProd ? config.scripts.prodDir : config.scripts.dest;
 gulp.task('nodemon', ['compileServer'], function (cb) {
   let called = false;
   return nodemon({
-    script: `${baseUrl}/${config.scripts.serverFilerOutput}`,
+    script: `${baseUrl}/${config.server.serverFilerOutput}`,
     ignore: [
       'node_modules/'
     ]

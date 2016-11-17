@@ -1,5 +1,6 @@
 'use strict';
 
+import path       from 'path';
 import config     from '../config';
 import gulp       from 'gulp';
 import notify     from 'gulp-notify';
@@ -10,7 +11,7 @@ import Cache      from 'gulp-file-cache';
 var cache = new Cache();
 
 gulp.task('compileServer', function () {
-  return gulp.src(config.scripts.serverFileSource) // your ES2015 code 
+   return gulp.src(path.resolve(__dirname, config.server.serverSource)) // your ES2015 code
     // .pipe(cache.filter()) // remember files 
     .pipe(babel({
         presets: ['es2015', 'stage-0'],

@@ -27,7 +27,11 @@ export default {
 		entryFile: ['./app/js/index.js', './app/js/server.js'],
 		outputFile: 'bundle.js',
 		sourceMapDest: 'build/js/bundle.js.map',
-		serverFileSource: './app/js/server.js',
+		
+	},
+
+	server: {
+		serverSource:'../../app/js/**/*.js',
 		serverFilerOutput: 'server.js'
 	},
 
