@@ -24,10 +24,11 @@ export default {
 		baseUrl: './app/js',
 		dest: 'build/js',
 		prodDest: 'dist/js',
-		entryFile: './app/js/index.js',
+		entryFile: ['./app/js/index.js', './app/js/server.js'],
 		outputFile: 'bundle.js',
 		sourceMapDest: 'build/js/bundle.js.map',
-		serverFile: './app/js/server.js'
+		serverFileSource: './app/js/server.js',
+		serverFilerOutput: 'server.js'
 	},
 
  	images: {

@@ -5,13 +5,13 @@ import gulp       from 'gulp';
 import notify     from 'gulp-notify';
 import babel      from 'gulp-babel';
 import gutil      from 'gulp-util';
-import cache      from 'gulp-cache';
+import Cache      from 'gulp-file-cache';
 
+var cache = new Cache();
 
 gulp.task('compileServer', function () {
-    console.log('compiling server file');
-  return gulp.src(config.scripts.serverFile) // your ES2015 code 
-    .pipe(cache.filter()) // remember files 
+  return gulp.src(config.scripts.serverFileSource) // your ES2015 code 
+    // .pipe(cache.filter()) // remember files 
     .pipe(babel({
         presets: ['es2015', 'stage-0'],
         plugins: [
@@ -19,7 +19,7 @@ gulp.task('compileServer', function () {
             "transform-object-rest-spread"
         ]
     })) // compile new ones 
-    .pipe(cache.cache()) // cache them 
+    // .pipe(cache.cache()) // cache them 
     .pipe(gulp.dest(global.isProd ? config.scripts.prodDest : config.scripts.dest)) // write them 
 })
 

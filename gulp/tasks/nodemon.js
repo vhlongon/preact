@@ -5,15 +5,15 @@ import gulp        from 'gulp';
 import nodemon     from 'gulp-nodemon';
 import browserSync from 'browser-sync';
 
-gulp.task('nodemon', function (cb) {
+const baseUrl = global.isProd ? config.scripts.prodDir : config.scripts.dest;
+
+gulp.task('nodemon', ['compileServer'], function (cb) {
   let called = false;
   return nodemon({
-    script: config.scripts.serverFile,
+    script: `${baseUrl}/${config.scripts.serverFilerOutput}`,
     ignore: [
-      'gulpfile.babel.js',
       'node_modules/'
-    ],
-    tasks: ['compileServer']
+    ]
   })
   .on('start', function () {
     if (!called) {
@@ -23,7 +23,7 @@ gulp.task('nodemon', function (cb) {
   })
   .on('restart', function () {
     setTimeout(function () {
-      browserSync.reload({ stream: false });
+      browserSync.stream({ once: true });
     }, 1000);
   });
 });
